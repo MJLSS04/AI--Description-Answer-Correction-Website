@@ -1,0 +1,132 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh;
+}
+
+.login-container {
+    background: rgba(245, 248, 242, 0.8);
+    width: 300px;
+    padding: 20px;
+    border-radius: 10px;
+    position: absolute;
+    top: 50%;
+    left: 20%;
+    transform: translate(-50%, -50%);
+}
+
+label {
+    display: block;
+    margin: 10px 0;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    box-sizing: border-box;
+}
+
+input[type="submit"] {
+    background-color: #4caf50;
+    color: white;
+    cursor: pointer;
+}
+
+input[type="submit"]:hover {
+    background-color: #45a049;
+}
+
+p {
+    margin-top: 20px;
+}
+
+a {
+    color: #0b2c1a;
+}
+
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    max-width: fit-content;
+    margin: 0 auto;
+    overflow-y: auto;
+    height: 80vh;
+}
+
+.course-box {
+    background: #fff;
+    width: 300px;
+    padding: 20px;
+    margin: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+}
+
+.course-box:hover {
+    transform: scale(1.05);
+}
+
+.course-box h3 {
+    color: #333;
+    font-size: 1.5em;
+    margin-bottom: 10px;
+}
+
+.course-box p {
+    color: #666;
+    font-size: 1em;
+    margin-bottom: 15px;
+}
+
+.button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #3498db;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.button:hover {
+    background-color: #2980b9;
+}
+
+.logout-button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #e74c3c;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.back-button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #e74c3c;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    transition: background-color 0.3s ease-in-out;
+}
+.logout-button:hover {
+    background-color: #c0392b;
+
+
+/* Add any additional styling as needed */
+
+
+}
+

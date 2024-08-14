@@ -1,0 +1,27 @@
+<!-- dashboard.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+</head>
+<body>
+    <h1>Welcome, {{ user_data.username }}!</h1>
+    
+    <div>
+        <a href="{{ url_for('take_exam') }}">Select Exam</a>
+    </div>
+    <div>
+        <!-- Replace 'example_course' with the actual course name -->
+        <a href="{{ url_for('results', username= username, course_name= course_name) }}">Results</a>
+    </div>
+    
+    <div>
+        <a href="{{ url_for('about_us') }}">About Us</a>
+    </div>
+    <div>
+        <a href="{{ url_for('logout') }}" class="logout-button">Logout</a>
+    </div>
+</body>
+</html>

@@ -1,0 +1,24 @@
+<!-- templates/results.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Results</title>
+    <!-- Link your CSS file here if you have one -->
+</head>
+<body>
+    <h1>Results for {{ course_name }}</h1>
+    <h2>{{ username }}'s Feedback Report</h2>
+
+    {% for result in results_data %}
+    <div class="result-box">
+        <p>Question: {{ result.question }}</p>
+        <p>User Answer: {{ result.answer }}</p>
+        <p>Feedback: {{ result.feedback }}</p>
+    </div>
+    {% endfor %}
+
+    <!-- Add additional styling as needed -->
+</body>
+</html>

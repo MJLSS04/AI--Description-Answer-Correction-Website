@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Take Test</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+    <script>
+        window.onload = function () {
+            var duration = 3 * 60 * 60; // 3 hours
+            var display = document.querySelector('#timer');
+            startTimer(duration, display);
+
+            var currentQuestionIndex = 0;
+            var questions = [
+                "Question 1: What is the capital of France?",
+                "Question 2: What is the largest mammal?",
+                "Question 3: Who wrote 'Romeo and Juliet'?",
+                "Question 4: What is the currency of Japan?",
+                "Question 5: In what year did the Titanic sink?",
+                "Question 6: What is the capital of Australia?",
+                "Question 7: How many continents are there?",
+                "Question 8: What is the main ingredient in guacamole?",
+                "Question 9: Who painted the Mona Lisa?",
+                "Question 10: What is the largest planet in our solar system?",
+            ];
+
+            displayQuestion(currentQuestionIndex);
+
+            document.getElementById('nextButton').addEventListener('click', function () {
+                if (currentQuestionIndex < questions.length - 1) {
+                    currentQuestionIndex++;
+                    displayQuestion(currentQuestionIndex);
+                } else {
+                    alert('You are at the last question.');
+                }
+            });
+
+            document.getElementById('prevButton').addEventListener('click', function () {
+                if (currentQuestionIndex > 0) {
+                    currentQuestionIndex--;
+                    displayQuestion(currentQuestionIndex);
+                } else {
+                    alert('You are at the first question.');
+                }
+            });
+
+            document.getElementById('testForm').addEventListener('submit', function (event) {
+                event.preventDefault();
+
+                const userAnswer = document.getElementById('answer').value;
+
+                // Store the question and answer in MongoDB (replace with your MongoDB logic)
+                const questionAnswerPair = {
+                    question: questions[currentQuestionIndex],
+                    answer: userAnswer,
+                };
+
+                // You need to replace this logic with actual MongoDB storage
+                // Example: Send an AJAX request to a Flask route that stores data in MongoDB
+                fetch('{{ url_for("submit_answer") }}', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(questionAnswerPair),
+                })
+                .then(response => response.json())
+                .then(data => {
+                    // Handle the response from the server if needed
+                    console.log('Response from server:', data);
+                });
+            });
+
+            function displayQuestion(index) {
+                var questionBox = document.querySelector('.question-box');
+                questionBox.innerHTML = `<p>${questions[index]}</p>`;
+                document.getElementById('answer').value = '';
+            }
+
+            function startTimer(duration, display) {
+                var timer = duration, minutes, seconds;
+                setInterval(function () {
+                    minutes = parseInt(timer / 60, 10);
+                    seconds = parseInt(timer % 60, 10);
+
+                    minutes = minutes < 10 ? "0" + minutes : minutes;
+                    seconds = seconds < 10 ? "0" + seconds : seconds;
+
+                    display.textContent = minutes + ":" + seconds;
+
+                    if (--timer < 0) {
+                        alert('Time is up! Submitting your answers.');
+                        document.forms['testForm'].submit();
+                    }
+                }, 1000);
+            }
+        };
+        function submitTest() {
+            alert('Test submitted!'); // You can replace this with actual submission logic
+
+            // Redirect to take_exam.html
+            window.location.href = "{{ url_for('take_exam') }}";
+        }
+    </script>
+</head>
+<body style="background-image: url('{{ url_for('static', filename='background2.jpg') }}');">
+    <div class="container">
+        <h2>Test Exam</h2>
+        <div class="question-box"></div>
+        <div class="answer-box">
+            <form id="testForm" action="{{ url_for('submit_answer') }}" method="post">
+                <label for="answer">Your Answer:</label>
+                <textarea id="answer" name="answer" rows="4" cols="50" required></textarea>
+                <button type="submit" class="button">Submit Answer</button>
+            </form>
+        </div>
+        <div class="timer-box">
+            <p>Time Remaining: <span id="timer"></span></p>
+        </div>
+        <div class="navigation-arrows">
+            <button id="prevButton">Previous</button>
+            <button id="nextButton">Next</button>
+        </div>
+    </div>
+    <form id="testForm" action="{{ url_for('submit_test') }}" method="post">
+        <button type="submit" class="button">Submit Test</button>
+    </form>
+    
+</body>
+</html>
